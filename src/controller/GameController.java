@@ -229,9 +229,11 @@ public class GameController {
                                 // ignore loopback during automatic interface lookup
                                 continue;
                             } else if (ifAddress.getAddress() instanceof Inet4Address) {
+                                System.out.println("Current network Interface: " + nif.getDisplayName());
+                                System.out.println("Current ifaddress: " + ifAddress);
                                 networkInterface = nif;
                                 localAddress = ifAddress;
-                                if (System.getProperty("os.name").contains("Windows")){
+                                if (!(networkInterface.getDisplayName().contains("bridge") || networkInterface.getDisplayName().contains("Virtual"))){
                                     break outer;
                                 }
                             }
@@ -336,6 +338,8 @@ public class GameController {
         }
 
         InetAddress broadcastAddress = localAddress.getBroadcast() == null ? localAddress.getAddress() : localAddress.getBroadcast();
+        System.out.println("Local Address: " + localAddress.getAddress());
+        System.out.println("Broadcast Address: " + localAddress.getBroadcast());
         GameControlReturnDataReceiverGC gameControlReturnDataReceiver = null;
         Sender sender = null;
         TrueDataSender trueDataSender = null;
