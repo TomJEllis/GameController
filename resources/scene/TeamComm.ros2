@@ -49,5 +49,9 @@
     <Compound name="fieldSmall">
       <Compound ref="fieldSmall" />
     </Compound>
+
+    <Compound name="field62">
+      <Compound ref="field62" />
+    </Compound>
   </Scene>
 </Simulation>
